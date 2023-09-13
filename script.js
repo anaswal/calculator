@@ -56,9 +56,19 @@ class Calculator {
     this.previousOperand = "";
   }
 
+  getDisplayNumber(number) {
+    const floatNumber = parseFloat(number);
+    if (isNaN(floatNumber)) return "";
+    return floatNumber.toLocaleString("en");
+  }
+
   updateDisplay() {
-    this.operandScreen.textContent = this.previousOperand;
-    this.currentScreen.textContent = this.currentOperand;
+    this.currentScreen.textContent = this.getDisplayNumber(this.currentOperand);
+    if (this.operation != null) {
+      this.operandScreen.textContent = `${this.getDisplayNumber(
+        this.previousOperand
+      )} ${this.operation}`;
+    }
   }
 }
 
